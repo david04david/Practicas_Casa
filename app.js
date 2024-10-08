@@ -67,15 +67,15 @@ function addPerson(){
             break;
 
         case valorEdad>=13&&valorEdad<=19:
-                valorCategoria="Teenger";
+                valorCategoria="Teenager";
             break;
 
         case valorEdad>=20&&valorEdad<=64:
-                valorCategoria="Teenger";
+                valorCategoria="Adult";
             break;
         
         case valorEdad>=65:
-                valorCategoria="Seniar";
+                valorCategoria="Senior";
             break;
     
         default:""
@@ -109,6 +109,4 @@ function showPersons(){
             alert(persona.name+" es menor de edad");
         }
     }
-
-    
 }
