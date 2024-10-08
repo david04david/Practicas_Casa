@@ -110,3 +110,14 @@ function showPersons(){
         }
     }
 }
+
+function logPersonRecursive(){
+    let index = 0;
+    while(index<contacts.length){
+       if(index<contacts.length){
+        console.log(contacts[index]);
+        index + 1;
+    } 
+    }
+    
+}
