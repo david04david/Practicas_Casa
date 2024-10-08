@@ -82,9 +82,6 @@ function addPerson(){
             break;
     }
 
-    console.log(valorCategoria);
-
-
     /*if(contacts.edad>0&&contacts.edad<120){
         if(contacts.edad<18){
             alert(contacts.name+" es menor de edad");
