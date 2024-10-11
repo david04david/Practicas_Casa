@@ -63,6 +63,13 @@ function addPerson(){
     let valorEdad = campoEdad.value;
     let valorCategoria;
     
+    const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
+    
+    if(!pattern.test(valorDNI)){
+        alert("Por favor, introduzca un DNI válido (8 dígitos y 1 letra).");
+        return;
+    }
+
     switch (true) {
         case valorEdad>0&&valorEdad<=12:
                 valorCategoria="Child";
@@ -110,12 +117,14 @@ function showPersons(){
     }
 }
 
-function logPersonRecursive(){
-    let index = 0;
+function logPersonRecursive(index){
+    /*let index = 0;*/
     while(index<contacts.length){
-       if(index<contacts.length){
+       /*if(index<contacts.length){
         console.log(contacts[index]);
     } 
-        index ++;
+        index ++;*/
+        console.log(contacts[index]);
+        logPersonRecursive(index+1);
     }
 }
