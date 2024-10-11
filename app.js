@@ -64,6 +64,11 @@ function addPerson(){
     
     const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
 
+    if(valorName==""){
+        alert("El nombre esta vacio");
+        return false;
+    }
+
     if(!pattern.test(valorDNI)){
         alert("Por favor, introduzca un DNI válido (8 dígitos y 1 letra).");
         return false;
@@ -131,8 +136,12 @@ function logPersonRecursive(index){
 
 function enviar(){
 
-    if (addPerson())
+    if (addPerson()){
+        //generar cadena json
+        //pasar datos json a fichero
+        let jsonString = JSON.stringify(contacts);
         formPrueba.submit();
-    else    
+        console.log(jsonString);
+    }else    
         window.alert("algo raro");
 }
