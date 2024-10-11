@@ -140,8 +140,9 @@ function enviar(){
         //generar cadena json
         //pasar datos json a fichero
         let jsonString = JSON.stringify(contacts);
-        formPrueba.submit();
         console.log(jsonString);
+        writeFile
+        formPrueba.submit();
     }else    
         window.alert("algo raro");
 }
