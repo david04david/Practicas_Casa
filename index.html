@@ -28,6 +28,8 @@
         <p id="saludo"></p>
         <label for="name">Introduzca su nombre</label>
         <input type="text" name="name" id="name" required>
+        <label for="dni">Introduzca su dni</label>
+        <input type="text" name="dni" id="dni" pattern="[0-9]{8}[A-Za-z]{1}" minlength="9" maxlength="9" required>
         <label for="phone">Introduzca su Nº de Teléfono</label>
         <input type="tel" name="phone" id="phone" required>
         <label for="email">Introduzca su email</label>
@@ -35,7 +37,7 @@
         <label for="edad">Introduzca su edad</label>
         <input type="number" name="edad" id="edad" required>
         <input type="button" onclick="addPerson()" value="Enviar">
-        <input type="button" onclick="showPersons()" value="Ver Registro">
+        <input type="button" onclick="logPersonRecursive()" value="Ver Registro">
         <!-- <button id="submit" onclick="">Enviar</button> -->
     </form>
     

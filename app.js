@@ -1,5 +1,6 @@
 //Variables
 let campoName = document.querySelector('#name');
+let campoDNI = document.querySelector('#dni');
 let campoPhone = document.querySelector('#phone');
 let campoEmail = document.querySelector('#email');
 let campoEdad = document.querySelector('#edad');
@@ -56,6 +57,7 @@ newEmail = window.prompt('Dime tu email:')*/
 function addPerson(){
     //formPrueba.preventDefault();
     let valorName = campoName.value;
+    let valorDNI = campoDNI.value;
     let valorPhone = campoPhone.value;
     let valorEmail = campoEmail.value;
     let valorEdad = campoEdad.value;
@@ -82,12 +84,9 @@ function addPerson(){
             break;
     }
 
-    /*if(contacts.edad>0&&contacts.edad<120){
-        if(contacts.edad<18){
-            alert(contacts.name+" es menor de edad");
-        }*/
         contacts.push({
             name:valorName,
+            DNI:valorDNI,
             phone:valorPhone,
             email:valorEmail,
             edad:valorEdad,
@@ -116,8 +115,7 @@ function logPersonRecursive(){
     while(index<contacts.length){
        if(index<contacts.length){
         console.log(contacts[index]);
-        index + 1;
     } 
+        index ++;
     }
-    
 }
