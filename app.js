@@ -55,7 +55,6 @@ newPhone = window.prompt('Dime tu teléfono:');
 newEmail = window.prompt('Dime tu email:')*/
 
 function addPerson(){
-    //formPrueba.preventDefault();
     let valorName = campoName.value;
     let valorDNI = campoDNI.value;
     let valorPhone = campoPhone.value;
@@ -64,10 +63,10 @@ function addPerson(){
     let valorCategoria;
     
     const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
-    
+
     if(!pattern.test(valorDNI)){
         alert("Por favor, introduzca un DNI válido (8 dígitos y 1 letra).");
-        return;
+        return false;
     }
 
     switch (true) {
@@ -102,7 +101,8 @@ function addPerson(){
         
         let last = contacts.length - 1; 
         console.log(contacts[last]);
-        formPrueba.reset();
+        return true;
+       /* formPrueba.reset();*/
     //}
 
     
@@ -119,7 +119,7 @@ function showPersons(){
 
 function logPersonRecursive(index){
     /*let index = 0;*/
-    while(index<contacts.length){
+    if(index<contacts.length){
        /*if(index<contacts.length){
         console.log(contacts[index]);
     } 
@@ -127,4 +127,12 @@ function logPersonRecursive(index){
         console.log(contacts[index]);
         logPersonRecursive(index+1);
     }
+}
+
+function enviar(){
+
+    if (addPerson())
+        formPrueba.submit();
+    else    
+        window.alert("algo raro");
 }
