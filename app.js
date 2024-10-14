@@ -141,7 +141,7 @@ function enviar(){
         //pasar datos json a fichero
         let jsonString = JSON.stringify(contacts);
         console.log(jsonString);
-        writeFile
+        //writeFile
         formPrueba.submit();
     }else    
         window.alert("algo raro");
