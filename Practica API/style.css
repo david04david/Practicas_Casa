@@ -17,6 +17,7 @@ header{
 
 main{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -33,6 +34,11 @@ main{
     padding: 2%;
     border-radius: 20px;
     font-size: 1.30rem;
+}
+
+div#reloj{
+    margin-top: 5%;
+    font-size: 2rem;
 }
 
 div#City{

@@ -35,8 +35,9 @@ function reloj(){
 function actualizarHora(i){
     if (i<10){
         i = "0" + i;
-        return i;
     }
+    
+    return i;
 }
 
 async function obtenerTiempo(lat,lon){
