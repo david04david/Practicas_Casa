@@ -49,3 +49,16 @@ div#City{
 div#ActTemp{
     font-size: 1.35rem;
 }
+
+.formPrueba{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 4% 35%;
+    padding: 2%;
+    background-color: aquamarine;
+    border-radius: 20px;
+    border: 2px solid black;
+}
