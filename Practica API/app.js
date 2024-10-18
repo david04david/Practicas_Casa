@@ -17,6 +17,28 @@ const lon = -6.385880542352156;
 
 
 //Funciones
+
+function reloj(){
+    let hoy = new Date();
+    let h = hoy.getHours();
+    let m = hoy.getMinutes();
+    let s = hoy.getSeconds();
+
+    m = actualizarHora(m);
+    s = actualizarHora(s);
+
+    document.querySelector('#reloj').innerHTML= h+":"+m+":"+s;
+    let t = setTimeout(function(){reloj(),500});
+
+}
+
+function actualizarHora(i){
+    if (i<10){
+        i = "0" + i;
+        return i;
+    }
+}
+
 async function obtenerTiempo(lat,lon){
     const url = `${api.url}?lat=${lat}&lon=${lon}&appid=${api.Key}&lang=es&units=metrics`;
     try {
@@ -42,3 +64,4 @@ function mostrarTiempo(data){
 
 
 obtenerTiempo(lat,lon);
+reloj();
