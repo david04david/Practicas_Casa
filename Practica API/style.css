@@ -34,3 +34,7 @@ main{
     border-radius: 20px;
     font-size: 1.30rem;
 }
+
+div#City{
+    font-weight: bold;
+}

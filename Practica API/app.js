@@ -37,6 +37,7 @@ function toCelsius(Kelvin){
 function mostrarTiempo(data){
     City.innerHTML = data.name;
     ActTemp.innerHTML = `${toCelsius(data.main.temp)}ºC`;
+    
     //estado.innerHTML = 
 
 }
