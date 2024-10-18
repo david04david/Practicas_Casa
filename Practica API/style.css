@@ -37,4 +37,9 @@ main{
 
 div#City{
     font-weight: bold;
+    font-size: 1.75rem;
+}
+
+div#ActTemp{
+    font-size: 1.35rem;
 }
