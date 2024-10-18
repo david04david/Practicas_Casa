@@ -22,6 +22,11 @@ main{
     align-items: center;
 }
 
+div#reloj{
+    margin-top: 5%;
+    font-size: 2rem;
+}
+
 .data{
     display: flex;
     flex-direction: column;
@@ -30,15 +35,10 @@ main{
     background-color: black;
     color: white;
     width: 50%;
-    margin-top: 5%;
+    margin-top: 3%;
     padding: 2%;
     border-radius: 20px;
     font-size: 1.30rem;
-}
-
-div#reloj{
-    margin-top: 5%;
-    font-size: 2rem;
 }
 
 div#City{

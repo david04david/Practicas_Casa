@@ -2,6 +2,7 @@
 const ActTemp = document.querySelector('#ActTemp');
 const City = document.querySelector('#City');
 const estado = document.querySelector('#estado');
+const icono = document.querySelector('#icono');
 
 
 const api = {
@@ -36,7 +37,7 @@ function actualizarHora(i){
     if (i<10){
         i = "0" + i;
     }
-    
+
     return i;
 }
 
@@ -61,6 +62,9 @@ function mostrarTiempo(data){
     City.innerHTML = data.name;
     ActTemp.innerHTML = `${toCelsius(data.main.temp)}ºC`;
     estado.innerHTML = data.weather[0].description;
+
+    let iconCode = data.weather[0].icon;
+    icono.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 }
 
 
