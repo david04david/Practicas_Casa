@@ -25,7 +25,7 @@ let contacts = [{
     name: "Helen Richards",
     phone: "0800 1111",
     email: "libero@convallis.edu",
-    edad:19,
+    edad: 19,
     cat:"Teenager"
     }];
 
@@ -59,7 +59,7 @@ function addPerson(){
     let valorDNI = campoDNI.value;
     let valorPhone = campoPhone.value;
     let valorEmail = campoEmail.value;
-    let valorEdad = campoEdad.value;
+    let valorEdad = parseInt(campoEdad.value);
     let valorCategoria;
     
     const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
@@ -140,9 +140,10 @@ function enviar(){
         //generar cadena json
         //pasar datos json a fichero
         let jsonString = JSON.stringify(contacts);
+        localStorage.setItem('Agenda', JSON.stringify(contacts));
         console.log(jsonString);
         //writeFile
-        formPrueba.submit();
-    }else    
+        formPrueba.reset();
+        }else    
         window.alert("algo raro");
 }
