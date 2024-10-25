@@ -80,7 +80,7 @@ let campoEdad = document.querySelector('#edad');
 let btnSubmit = document.querySelector('#submit');
 const formPrueba = document.querySelector('#formPrueba');
 
-const muestraInfo = document.querySelector('#muestraInfo');
+const campoInfo = document.querySelector('#muestraInfo');
 
 let contacts = [{
     name: "Maxwell Wright",
@@ -219,7 +219,7 @@ function showPersons(){
 
 function muestraInfo() {
     for(persona of contacts){
-        muestraInfo.innerHTML = persona;
+        campoInfo.innerHTML = persona.content;
         if(persona.edad<18){
             alert(persona.name+" es menor de edad");
         }
