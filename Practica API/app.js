@@ -80,7 +80,7 @@ let campoEdad = document.querySelector('#edad');
 let btnSubmit = document.querySelector('#submit');
 const formPrueba = document.querySelector('#formPrueba');
 
-const zonaSaludo = document.querySelector('#saludo');
+const muestraInfo = document.querySelector('#muestraInfo');
 
 let contacts = [{
     name: "Maxwell Wright",
@@ -161,6 +161,54 @@ function addPerson(){
     
 }
 
+
+function logPersonRecursive(index){
+    /*let index = 0;*/
+    if(index<contacts.length){
+        /*if(index<contacts.length){
+            console.log(contacts[index]);
+            } 
+            index ++;*/
+        console.log(contacts[index]);
+        logPersonRecursive(index+1);
+    }
+}
+
+function enviar(){
+    
+    if (addPerson()){
+        //generar cadena json
+        //pasar datos json a fichero
+        let jsonString = JSON.stringify(contacts);
+        localStorage.setItem('Agenda', JSON.stringify(contacts));
+        console.log(jsonString);
+        //writeFile
+        formPrueba.reset();
+    }else    
+    window.alert("algo raro");
+}
+
+function DownloadJson(){
+    
+    const jsonString = localStorage.getItem('Agenda');
+    
+    if (jsonString) {
+        const blob = new Blob([jsonString],{type: "application/json"});
+        //Link de descarga
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "data.json";
+        
+        link.click();
+        
+        URL.revokeObjectURL(link.href)
+    }else{
+        alert('No hay datos de JSON en el localstorage');
+    }
+    
+}
+
 function showPersons(){
     for (persona of contacts) {
         console.log(persona);
@@ -170,50 +218,11 @@ function showPersons(){
     }
 }
 
-function logPersonRecursive(index){
-    /*let index = 0;*/
-    if(index<contacts.length){
-       /*if(index<contacts.length){
-        console.log(contacts[index]);
-    } 
-        index ++;*/
-        console.log(contacts[index]);
-        logPersonRecursive(index+1);
+function muestraInfo() {
+    for(persona of contacts){
+        muestraInfo.innerHTML = persona;
+        if(persona.edad<18){
+            alert(persona.name+" es menor de edad");
+        }
     }
-}
-
-function enviar(){
-
-    if (addPerson()){
-        //generar cadena json
-        //pasar datos json a fichero
-        let jsonString = JSON.stringify(contacts);
-        localStorage.setItem('Agenda', JSON.stringify(contacts));
-        console.log(jsonString);
-        //writeFile
-        formPrueba.reset();
-        }else    
-        window.alert("algo raro");
-}
-
-function DownloadJson(){
-
-    const jsonString = localStorage.getItem('Agenda');
-
-    if (jsonString) {
-        const blob = new Blob([jsonString],{type: "application/json"});
-        //Link de descarga
-    
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = "data.json";
-    
-        link.click();
-    
-        URL.revokeObjectURL(link.href)
-    }else{
-        alert('No hay datos de JSON en el localstorage');
-    }
-
-    
 }

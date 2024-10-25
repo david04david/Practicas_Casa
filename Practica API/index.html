@@ -23,7 +23,6 @@
         </div>
         <div class="formulario">
             <form id="formPrueba" onsubmit="return false" class="formPrueba">
-                <p id="saludo"></p>
                 <label for="name">Introduzca su nombre</label>
                 <input type="text" name="name" id="name" required>
                 <label for="dni">Introduzca su dni</label>
@@ -35,12 +34,14 @@
                 <label for="edad">Introduzca su edad</label>
                 <input type="number" name="edad" id="edad" required>
                 <input type="submit" onclick="enviar();" value="Enviar">
-                <input type="button" onclick="logPersonRecursive(0)" value="Ver Registro">
+                <input type="button" onclick="muestraInfo()" value="Ver Registro">
                 <input type="button" onclick="DownloadJson()" value="Descargar JSON">
                 <!-- <button id="submit" onclick="">Enviar</button> -->
             </form>
 
-            div.
+            <div class="muestraInfo">
+
+            </div>
         </div>
     </main>
 
