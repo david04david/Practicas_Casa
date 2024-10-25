@@ -161,7 +161,6 @@ function addPerson(){
     
 }
 
-
 function logPersonRecursive(index){
     /*let index = 0;*/
     if(index<contacts.length){
