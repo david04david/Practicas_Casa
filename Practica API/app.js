@@ -188,9 +188,32 @@ function enviar(){
         //generar cadena json
         //pasar datos json a fichero
         let jsonString = JSON.stringify(contacts);
+        localStorage.setItem('Agenda', JSON.stringify(contacts));
         console.log(jsonString);
         //writeFile
-        formPrueba.submit();
-    }else    
+        formPrueba.reset();
+        }else    
         window.alert("algo raro");
+}
+
+function DownloadJson(){
+
+    const jsonString = localStorage.getItem('Agenda');
+
+    if (jsonString) {
+        const blob = new Blob([jsonString],{type: "application/json"});
+        //Link de descarga
+    
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "data.json";
+    
+        link.click();
+    
+        URL.revokeObjectURL(link.href)
+    }else{
+        alert('No hay datos de JSON en el localstorage');
+    }
+
+    
 }
