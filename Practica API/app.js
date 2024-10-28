@@ -103,71 +103,68 @@ let contacts = [{
     }];
 
 function addPerson(){
-    let valorName = campoName.value;
-    let valorDNI = campoDNI.value;
-    let valorPhone = campoPhone.value;
-    let valorEmail = campoEmail.value;
-    let valorEdad = campoEdad.value;
-    let valorCategoria;
-    
-    const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
-
-    if(valorName==""){
-        alert("El nombre esta vacio");
-        return false;
-    }
-
-    if(!pattern.test(valorDNI)){
-        alert("Por favor, introduzca un DNI válido (8 dígitos y 1 letra).");
-        return false;
-    }
-
-    switch (true) {
-        case valorEdad>0&&valorEdad<=12:
-                valorCategoria="Child";
-            break;
-
-        case valorEdad>=13&&valorEdad<=19:
-                valorCategoria="Teenager";
-            break;
-
-        case valorEdad>=20&&valorEdad<=64:
-                valorCategoria="Adult";
-            break;
+    try {
+        let valorName = campoName.value;
+        let valorDNI = campoDNI.value;
+        let valorPhone = campoPhone.value;
+        let valorEmail = campoEmail.value;
+        let valorEdad = campoEdad.value;
+        let valorCategoria;
         
-        case valorEdad>=65:
-                valorCategoria="Senior";
-            break;
-    
-        default:""
-            break;
-    }
-
-        contacts.push({
-            name:valorName,
-            DNI:valorDNI,
-            phone:valorPhone,
-            email:valorEmail,
-            edad:valorEdad,
-            categoria:valorCategoria,
-        });
+        const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
         
-        let last = contacts.length - 1; 
-        console.log(contacts[last]);
-        return true;
-       /* formPrueba.reset();*/
-    //}
-
+        if(valorName==""){
+            alert("El nombre esta vacio");
+            return false;
+        }
     
+        if(!pattern.test(valorDNI)){
+            alert("Por favor, introduzca un DNI válido (8 dígitos y 1 letra).");
+            return false;
+        }
+    
+        switch (true) {
+            case valorEdad>0&&valorEdad<=12:
+                    valorCategoria="Child";
+                break;
+    
+            case valorEdad>=13&&valorEdad<=19:
+                    valorCategoria="Teenager";
+                break;
+    
+            case valorEdad>=20&&valorEdad<=64:
+                    valorCategoria="Adult";
+                break;
+            
+            case valorEdad>=65:
+                    valorCategoria="Senior";
+                break;
+        
+            default:""
+                break;
+        }
+    
+            contacts.push({
+                name:valorName,
+                DNI:valorDNI,
+                phone:valorPhone,
+                email:valorEmail,
+                edad:valorEdad,
+                categoria:valorCategoria,
+            });
+            
+            let last = contacts.length - 1; 
+            console.log(contacts[last]);
+            return true;
+           /* formPrueba.reset();*/
+        //}
+    } catch (error) {
+        alert('No se ha podido añadir a la persona');
+    }
 }
 
 function logPersonRecursive(index){
-    /*let index = 0;*/
     if(index<contacts.length){
-        /*if(index<contacts.length){
-            console.log(contacts[index]);
-            } 
-            index ++;*/
         console.log(contacts[index]);
         logPersonRecursive(index+1);
     }
