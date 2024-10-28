@@ -221,7 +221,7 @@ function showPersons(){
 
 function muestraInfo() {
     for(persona of contacts){
-        campoInfo.innerHTML = persona.content;
+        campoInfo.innerHTML +=`${persona.name} ${persona.edad}<br>`;
         if(persona.edad<18){
             alert(persona.name+" es menor de edad");
         }
