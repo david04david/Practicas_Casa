@@ -174,24 +174,30 @@ function logPersonRecursive(index){
 }
 
 function enviar(){
-    
-    if (addPerson()){
-        //generar cadena json
-        //pasar datos json a fichero
-        let jsonString = JSON.stringify(contacts);
-        localStorage.setItem('Agenda', JSON.stringify(contacts));
-        console.log(jsonString);
-        //writeFile
-        formPrueba.reset();
-    }else    
-    window.alert("algo raro");
+    try {
+        if (addPerson()){
+            //generar cadena json
+            //pasar datos json a fichero
+            try {
+                let jsonString = JSON.stringify(contacts);
+                localStorage.setItem('Agenda', JSON.stringify(contacts));
+                console.log(jsonString);
+                //writeFile
+                formPrueba.reset();   
+            } catch (error) {
+                console.log("No se ha podido pasar a JSON");
+            }
+        }   
+    } catch (error) {
+        console.log("No se ha podido enviar los datos correctamente")
+    }
 }
 
 function DownloadJson(){
     
     const jsonString = localStorage.getItem('Agenda');
     
-    if (jsonString) {
+    try {
         const blob = new Blob([jsonString],{type: "application/json"});
         //Link de descarga
         
@@ -201,11 +207,10 @@ function DownloadJson(){
         
         link.click();
         
-        URL.revokeObjectURL(link.href)
-    }else{
-        alert('No hay datos de JSON en el localstorage');
-    }
-    
+        URL.revokeObjectURL(link.href);
+    } catch (error) {
+        alert('No hay datos almacenados que descargar');
+    }    
 }
 
 function showPersons(){
