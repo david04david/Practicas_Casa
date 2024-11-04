@@ -4,6 +4,36 @@ const City = document.querySelector('#City');
 const estado = document.querySelector('#estado');
 const icono = document.querySelector('#icono');
 
+//Funciones Formulario
+let campoName = document.querySelector('#name');
+let campoDNI = document.querySelector('#dni');
+let campoPhone = document.querySelector('#phone');
+let campoEmail = document.querySelector('#email');
+let campoEdad = document.querySelector('#edad');
+let btnSubmit = document.querySelector('#submit');
+const formPrueba = document.querySelector('#formPrueba');
+
+const campoInfo = document.querySelector('#muestraInfo');
+
+let contacts = [{
+    name: "Maxwell Wright",
+    phone: "(0191) 719 6495",
+    email: "Curabitur.egestas.nunc@nonummyac.co.uk",
+    edad: 20,
+    cat:"Adult"
+    }, {
+    name: "Raja Villarreal",
+    phone: "0866 398 2895",
+    email: "posuere.vulputate@sed.com",
+    edad: 15,
+    cat:"Teenager"
+    }, {
+    name: "Helen Richards",
+    phone: "0800 1111",
+    email: "libero@convallis.edu",
+    edad:19,
+    cat:"Teenager"
+    }];
 
 const api = {
     Key:'4110390cbc7db4626fe443c9d694bb80',
@@ -12,10 +42,6 @@ const api = {
 
 const lat = 39.466307962945415;
 const lon = -6.385880542352156;
-
-//Eventos
-
-
 
 //Funciones
 
@@ -70,37 +96,6 @@ function mostrarTiempo(data){
 
 obtenerTiempo(lat,lon);
 reloj();
-
-//Funciones Formulario
-let campoName = document.querySelector('#name');
-let campoDNI = document.querySelector('#dni');
-let campoPhone = document.querySelector('#phone');
-let campoEmail = document.querySelector('#email');
-let campoEdad = document.querySelector('#edad');
-let btnSubmit = document.querySelector('#submit');
-const formPrueba = document.querySelector('#formPrueba');
-
-const campoInfo = document.querySelector('#muestraInfo');
-
-let contacts = [{
-    name: "Maxwell Wright",
-    phone: "(0191) 719 6495",
-    email: "Curabitur.egestas.nunc@nonummyac.co.uk",
-    edad: 20,
-    cat:"Adult"
-    }, {
-    name: "Raja Villarreal",
-    phone: "0866 398 2895",
-    email: "posuere.vulputate@sed.com",
-    edad: 15,
-    cat:"Teenager"
-    }, {
-    name: "Helen Richards",
-    phone: "0800 1111",
-    email: "libero@convallis.edu",
-    edad:19,
-    cat:"Teenager"
-    }];
 
 function addPerson(){
     try {
