@@ -3,6 +3,7 @@ const ActTemp = document.querySelector('#ActTemp');
 const City = document.querySelector('#City');
 const estado = document.querySelector('#estado');
 const icono = document.querySelector('#icono');
+const paraReloj = document.querySelector('#paraReloj');
 
 //Funciones Formulario
 let campoName = document.querySelector('#name');
@@ -14,6 +15,7 @@ let btnSubmit = document.querySelector('#submit');
 const formPrueba = document.querySelector('#formPrueba');
 
 const campoInfo = document.querySelector('#muestraInfo');
+const campoPersona = document.querySelector('#persona');
 
 let contacts = [{
     name: "Maxwell Wright",
@@ -57,6 +59,10 @@ function reloj(){
     document.querySelector('#reloj').innerHTML= h+":"+m+":"+s;
     let t = setTimeout(function(){reloj(),500});
 
+    paraReloj.addEventListener('click', ()=>{
+        t = setTimeout(function(){reloj(), Infinity});
+    })
+
 }
 
 function actualizarHora(i){
@@ -65,6 +71,10 @@ function actualizarHora(i){
     }
 
     return i;
+}
+
+function pararReloj(){
+    setTimeout(reloj(),10000);
 }
 
 async function obtenerTiempo(lat,lon){
@@ -214,6 +224,18 @@ function showPersons(){
     }
 }
 
+function carruselPersonas(){
+
+    for (let i = 0; i < contacts.length; i++) {
+        //console.log(personas[i]);
+        const muestra = function(){
+            console.log(contacts[i]);
+            campoPersona.innerHTML = contacts[i].name;
+        }
+        setTimeout(muestra,5000);
+    }
+}
+
 function muestraInfo() {
     campoInfo.innerHTML = "";
     for(persona of contacts){
@@ -223,3 +245,8 @@ function muestraInfo() {
         }
     }
 }
+
+
+//Llamadas
+
+setInterval(carruselPersonas,5000);
