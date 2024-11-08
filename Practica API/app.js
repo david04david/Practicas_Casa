@@ -3,7 +3,6 @@ const ActTemp = document.querySelector('#ActTemp');
 const City = document.querySelector('#City');
 const estado = document.querySelector('#estado');
 const icono = document.querySelector('#icono');
-const paraReloj = document.querySelector('#paraReloj');
 
 //Funciones Formulario
 let campoName = document.querySelector('#name');
@@ -16,6 +15,7 @@ const formPrueba = document.querySelector('#formPrueba');
 
 const campoInfo = document.querySelector('#muestraInfo');
 const campoPersona = document.querySelector('#persona');
+let carrusel;
 
 let contacts = [{
     name: "Maxwell Wright",
@@ -59,10 +59,6 @@ function reloj(){
     document.querySelector('#reloj').innerHTML= h+":"+m+":"+s;
     let t = setTimeout(function(){reloj(),500});
 
-    paraReloj.addEventListener('click', ()=>{
-        t = setTimeout(function(){reloj(), Infinity});
-    })
-
 }
 
 function actualizarHora(i){
@@ -71,10 +67,6 @@ function actualizarHora(i){
     }
 
     return i;
-}
-
-function pararReloj(){
-    setTimeout(reloj(),10000);
 }
 
 async function obtenerTiempo(lat,lon){
@@ -161,8 +153,7 @@ function addPerson(){
             let last = contacts.length - 1; 
             console.log(contacts[last]);
             return true;
-           /* formPrueba.reset();*/
-        //}
+
     } catch (error) {
         alert('No se ha podido añadir a la persona');
     }
@@ -226,14 +217,20 @@ function showPersons(){
 
 function carruselPersonas(){
 
-    for (let i = 0; i < contacts.length; i++) {
-        //console.log(personas[i]);
+        i=0;
         const muestra = function(){
-            console.log(contacts[i]);
             campoPersona.innerHTML = contacts[i].name;
+            i++;
+            if (i==contacts.length) {
+                i=0;
+            }
         }
-        setTimeout(muestra,5000);
-    }
+        
+        carrusel=setInterval(muestra,2000);
+}
+
+function pararCarrusel() {
+    clearInterval(carrusel);
 }
 
 function muestraInfo() {
@@ -249,4 +246,4 @@ function muestraInfo() {
 
 //Llamadas
 
-setInterval(carruselPersonas,5000);
+carruselPersonas();
