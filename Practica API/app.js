@@ -79,7 +79,6 @@ async function obtenerTiempo(lat, lon) {
     try {
         const respuesta = await fetch(url);
         const data = await respuesta.json();
-        console.log(data);
         mostrarTiempo(data);
     } catch (error) {
         console.error('Error al obtener el clima:', error);
