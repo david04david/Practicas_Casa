@@ -24,24 +24,24 @@ let contacts = [{
     phone: "(0191) 719 6495",
     email: "Curabitur.egestas.nunc@nonummyac.co.uk",
     edad: 20,
-    cat:"Adult"
-    }, {
+    cat: "Adult"
+}, {
     name: "Raja Villarreal",
     phone: "0866 398 2895",
     email: "posuere.vulputate@sed.com",
     edad: 15,
-    cat:"Teenager"
-    }, {
+    cat: "Teenager"
+}, {
     name: "Helen Richards",
     phone: "0800 1111",
     email: "libero@convallis.edu",
-    edad:19,
-    cat:"Teenager"
-    }];
+    edad: 19,
+    cat: "Teenager"
+}];
 
 const api = {
-    Key:'4110390cbc7db4626fe443c9d694bb80',
-    url:'https://api.openweathermap.org/data/2.5/weather'
+    Key: '4110390cbc7db4626fe443c9d694bb80',
+    url: 'https://api.openweathermap.org/data/2.5/weather'
 };
 
 const lat = 39.466307962945415;
@@ -49,7 +49,8 @@ const lon = -6.385880542352156;
 
 //Funciones
 
-function reloj(){
+//Obtiene la hora, minutos y segundos y lo va actualizando
+function reloj() {
     let hoy = new Date();
     let h = hoy.getHours();
     let m = hoy.getMinutes();
@@ -58,20 +59,22 @@ function reloj(){
     m = actualizarHora(m);
     s = actualizarHora(s);
 
-    document.querySelector('#reloj').innerHTML= h+":"+m+":"+s;
-    let t = setTimeout(function(){reloj(),500});
+    document.querySelector('#reloj').innerHTML = h + ":" + m + ":" + s;
+    let t = setTimeout(function () { reloj(), 500 });
 
 }
 
-const actualizarHora=(i)=>{
-    if (i<10){
+//Añade un cero si el numero es menor de 10
+const actualizarHora = (i) => {
+    if (i < 10) {
         i = "0" + i;
     }
 
     return i;
 }
 
-async function obtenerTiempo(lat,lon){
+//Obtiene el tiempo mediante el uso de la API openWeather
+async function obtenerTiempo(lat, lon) {
     const url = `${api.url}?lat=${lat}&lon=${lon}&appid=${api.Key}&lang=es&units=metrics`;
     try {
         const respuesta = await fetch(url);
@@ -80,16 +83,18 @@ async function obtenerTiempo(lat,lon){
         mostrarTiempo(data);
     } catch (error) {
         console.error('Error al obtener el clima:', error);
-        campoErrores.innerHTML='Ha ocurrido un error al obtener el clima.';
-        campoErrores.style.display='block';
+        campoErrores.innerHTML = 'Ha ocurrido un error al obtener el clima.';
+        campoErrores.style.display = 'block';
     }
 }
 
-function toCelsius(Kelvin){
+//Convierte los kelvins en grados celsius
+function toCelsius(Kelvin) {
     return Math.round(Kelvin - 273.15);
 }
 
-function mostrarTiempo(data){
+//Muestra los datos obtenidos de la API por pantalla
+function mostrarTiempo(data) {
     City.innerHTML = data.name;
     ActTemp.innerHTML = `${toCelsius(data.main.temp)}ºC`;
     estado.innerHTML = data.weather[0].description;
@@ -98,11 +103,8 @@ function mostrarTiempo(data){
     icono.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 }
 
-
-obtenerTiempo(lat,lon);
-reloj();
-
-function addPerson(){
+//Obtiene los valores, valida la entrada de los mismos y los añade al array de personas
+function addPerson() {
     try {
         let valorName = campoName.value;
         let valorDNI = campoDNI.value;
@@ -110,151 +112,156 @@ function addPerson(){
         let valorEmail = campoEmail.value;
         let valorEdad = campoEdad.value;
         let valorCategoria;
-        
+
         const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
-        
-        if(valorName==""){
-            campoErrores.innerHTML="El nombre esta vacio";
-            campoErrores.style.display='block';
+
+        if (valorName == "") {
+            campoErrores.innerHTML = "El nombre esta vacio";
+            campoErrores.style.display = 'block';
             return false;
         }
 
-        if(valorEdad==""){
-            campoErrores.innerHTML="La edad esta vacia";
-            campoErrores.style.display='block';
+        if (valorEdad == "") {
+            campoErrores.innerHTML = "La edad esta vacia";
+            campoErrores.style.display = 'block';
             return false;
         }
-    
-        if(!pattern.test(valorDNI)){
-            campoErrores.innerHTML="Por favor, introduzca un DNI válido (8 dígitos y 1 letra).";
-            campoErrores.style.display='block';
+
+        if (!pattern.test(valorDNI)) {
+            campoErrores.innerHTML = "Por favor, introduzca un DNI válido (8 dígitos y 1 letra).";
+            campoErrores.style.display = 'block';
             return false;
         }
-    
+
         switch (true) {
-            case valorEdad>0&&valorEdad<=12:
-                    valorCategoria="Child";
+            case valorEdad > 0 && valorEdad <= 12:
+                valorCategoria = "Child";
                 break;
-    
-            case valorEdad>=13&&valorEdad<=19:
-                    valorCategoria="Teenager";
+
+            case valorEdad >= 13 && valorEdad <= 19:
+                valorCategoria = "Teenager";
                 break;
-    
-            case valorEdad>=20&&valorEdad<=64:
-                    valorCategoria="Adult";
+
+            case valorEdad >= 20 && valorEdad <= 64:
+                valorCategoria = "Adult";
                 break;
-            
-            case valorEdad>=65:
-                    valorCategoria="Senior";
+
+            case valorEdad >= 65:
+                valorCategoria = "Senior";
                 break;
-        
-            default:""
+
+            default: ""
                 break;
         }
-    
-            contacts.push({
-                name:valorName,
-                DNI:valorDNI,
-                phone:valorPhone,
-                email:valorEmail,
-                edad:valorEdad,
-                categoria:valorCategoria,
-            });
-            
-            let last = contacts.length - 1; 
-            console.log(contacts[last]);
-            return true;
+
+        contacts.push({
+            name: valorName,
+            DNI: valorDNI,
+            phone: valorPhone,
+            email: valorEmail,
+            edad: valorEdad,
+            categoria: valorCategoria,
+        });
+
+        let last = contacts.length - 1;
+        console.log(contacts[last]);
+        return true;
 
     } catch (error) {
-        campoErrores.innerHTML='No se ha podido añadir a la persona';
-        campoErrores.style.display='block';
+        campoErrores.innerHTML = 'No se ha podido añadir a la persona';
+        campoErrores.style.display = 'block';
     }
 }
 
-function logPersonRecursive(index){
-    if(index<contacts.length){
+//Función recursiva que muestra las personas
+function logPersonRecursive(index) {
+    if (index < contacts.length) {
         console.log(contacts[index]);
-        logPersonRecursive(index+1);
+        logPersonRecursive(index + 1);
     }
 }
 
-function enviar(){
+//Genera el JSON del array de personas
+function enviar() {
     try {
-        if (addPerson()){
-            //generar cadena json
-            //pasar datos json a fichero
+        if (addPerson()) {
             try {
                 let jsonString = JSON.stringify(contacts);
                 localStorage.setItem('Agenda', JSON.stringify(contacts));
-                console.log(jsonString);
-                //writeFile
-                formPrueba.reset();   
+                formPrueba.reset();
             } catch (error) {
-                console.log("No se ha podido pasar a JSON");
+                campoErrores.innerHTML = 'No se ha podido pasar a JSON';
+                campoErrores.style.display = 'block';
             }
-        }   
+        }
     } catch (error) {
-        console.log("No se ha podido enviar los datos correctamente")
+        campoErrores.innerHTML = 'No se ha podido enviar los datos correctamente';
+        campoErrores.style.display = 'block';
     }
 }
 
-function DownloadJson(){
-    
+//Genera una descargar del archivo JSON de las personas
+function DownloadJson() {
+
     const jsonString = localStorage.getItem('Agenda');
-    
+
     try {
-        const blob = new Blob([jsonString],{type: "application/json"});
+        const blob = new Blob([jsonString], { type: "application/json" });
         //Link de descarga
-        
+
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = "data.json";
-        
+
         link.click();
-        
+
         URL.revokeObjectURL(link.href);
     } catch (error) {
-        campoErrores.innerHTML='No hay datos almacenados que descargar';
-        campoErrores.style.display='block';
-    }    
+        campoErrores.innerHTML = 'No hay datos almacenados que descargar';
+        campoErrores.style.display = 'block';
+    }
 }
 
-function showPersons(){
+//Muestra las personas y genera un aviso si es menor de edad
+function showPersons() {
     for (persona of contacts) {
         console.log(persona);
-        if(persona.edad<18){
-            campoErrores.innerHTML=persona.name+" es menor de edad";
-            campoErrores.style.display='block';
+        if (persona.edad < 18) {
+            campoErrores.innerHTML = persona.name + " es menor de edad";
+            campoErrores.style.display = 'block';
         }
     }
 }
 
+//Realiza un carrusel en el que cada 5 segunos para el nombre de una persona
 function carruselPersonas() {
     let i = 0;
 
-    const muestra = function() {
+    const muestra = function () {
         campoPersona.innerHTML = contacts[i].name;
         i++;
         if (i === contacts.length) {
             i = 0;
         }
-        carrusel=setTimeout(muestra, 5000);
+        carrusel = setTimeout(muestra, 5000);
     };
 
     muestra();
 }
 
+//Para el carrusel anterior
 function pararCarrusel() {
     clearTimeout(carrusel);
 }
 
+//Muestra las personas con su edad y avisa si es menor de edad
 function muestraInfo() {
-    campoInfo.style.display='block';
+    campoInfo.style.display = 'block';
     campoInfo.innerHTML = "";
-    for(persona of contacts){
-        campoInfo.innerHTML +=`${persona.name} ${persona.edad}<br>`;
-        if(persona.edad<18){
-            campoErrores.innerHTML=persona.name+" es menor de edad";
+    for (persona of contacts) {
+        campoInfo.innerHTML += `${persona.name} ${persona.edad}<br>`;
+        if (persona.edad < 18) {
+            campoErrores.innerHTML = persona.name + " es menor de edad";
             campoErrores.style.display = 'block';
         }
     }
@@ -262,4 +269,6 @@ function muestraInfo() {
 
 
 //Llamadas
+obtenerTiempo(lat, lon);
+reloj();
 carruselPersonas();
