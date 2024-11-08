@@ -65,12 +65,12 @@ function addPerson(){
     const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
 
     if(valorName==""){
-        alert("El nombre esta vacio");
+        campoErrores.innerHTML="El nombre esta vacio";
         return false;
     }
 
     if(!pattern.test(valorDNI)){
-        alert("Por favor, introduzca un DNI válido (8 dígitos y 1 letra).");
+        campoErrores.innerHTML="Por favor, introduzca un DNI válido (8 dígitos y 1 letra).";
         return false;
     }
 
@@ -117,7 +117,7 @@ function showPersons(){
     for (persona of contacts) {
         console.log(persona);
         if(persona.edad<18){
-            alert(persona.name+" es menor de edad");
+            campoErrores.innerHTML=persona.name+" es menor de edad";
         }
     }
 }
@@ -145,7 +145,7 @@ function enviar(){
         //writeFile
         formPrueba.reset();
         }else    
-        window.alert("algo raro");
+        campoErrores.innerHTML="Ha ocurrido un error en la inserción";
 }
 
 function DownloadJson(){
@@ -164,7 +164,7 @@ function DownloadJson(){
     
         URL.revokeObjectURL(link.href)
     }else{
-        alert('No hay datos de JSON en el localstorage');
+        campoErrores.innerHTML='No hay datos de JSON en el localstorage';
     }
 
     

@@ -1,10 +1,10 @@
-//Variables
+//Campos del tiempo
 const ActTemp = document.querySelector('#ActTemp');
 const City = document.querySelector('#City');
 const estado = document.querySelector('#estado');
 const icono = document.querySelector('#icono');
 
-//Funciones Formulario
+//campos del formulario
 let campoName = document.querySelector('#name');
 let campoDNI = document.querySelector('#dni');
 let campoPhone = document.querySelector('#phone');
@@ -13,9 +13,11 @@ let campoEdad = document.querySelector('#edad');
 let btnSubmit = document.querySelector('#submit');
 const formPrueba = document.querySelector('#formPrueba');
 
+//Campos de informacion adicional y carrusel
 const campoInfo = document.querySelector('#muestraInfo');
 const campoPersona = document.querySelector('#persona');
 let carrusel;
+const campoErrores = document.querySelector('#errores');
 
 let contacts = [{
     name: "Maxwell Wright",
@@ -61,7 +63,7 @@ function reloj(){
 
 }
 
-function actualizarHora(i){
+const actualizarHora=(i)=>{
     if (i<10){
         i = "0" + i;
     }
@@ -78,7 +80,8 @@ async function obtenerTiempo(lat,lon){
         mostrarTiempo(data);
     } catch (error) {
         console.error('Error al obtener el clima:', error);
-        alert('Ha ocurrido un error al obtener el clima.');
+        campoErrores.innerHTML='Ha ocurrido un error al obtener el clima.';
+        campoErrores.style.display='block';
     }
 }
 
@@ -111,12 +114,20 @@ function addPerson(){
         const pattern = /^[0-9]{8}[A-Za-z]{1}$/;
         
         if(valorName==""){
-            alert("El nombre esta vacio");
+            campoErrores.innerHTML="El nombre esta vacio";
+            campoErrores.style.display='block';
+            return false;
+        }
+
+        if(valorEdad==""){
+            campoErrores.innerHTML="La edad esta vacia";
+            campoErrores.style.display='block';
             return false;
         }
     
         if(!pattern.test(valorDNI)){
-            alert("Por favor, introduzca un DNI válido (8 dígitos y 1 letra).");
+            campoErrores.innerHTML="Por favor, introduzca un DNI válido (8 dígitos y 1 letra).";
+            campoErrores.style.display='block';
             return false;
         }
     
@@ -155,7 +166,8 @@ function addPerson(){
             return true;
 
     } catch (error) {
-        alert('No se ha podido añadir a la persona');
+        campoErrores.innerHTML='No se ha podido añadir a la persona';
+        campoErrores.style.display='block';
     }
 }
 
@@ -202,7 +214,8 @@ function DownloadJson(){
         
         URL.revokeObjectURL(link.href);
     } catch (error) {
-        alert('No hay datos almacenados que descargar');
+        campoErrores.innerHTML='No hay datos almacenados que descargar';
+        campoErrores.style.display='block';
     }    
 }
 
@@ -210,7 +223,8 @@ function showPersons(){
     for (persona of contacts) {
         console.log(persona);
         if(persona.edad<18){
-            alert(persona.name+" es menor de edad");
+            campoErrores.innerHTML=persona.name+" es menor de edad";
+            campoErrores.style.display='block';
         }
     }
 }
@@ -240,7 +254,8 @@ function muestraInfo() {
     for(persona of contacts){
         campoInfo.innerHTML +=`${persona.name} ${persona.edad}<br>`;
         if(persona.edad<18){
-            alert(persona.name+" es menor de edad");
+            campoErrores.innerHTML=persona.name+" es menor de edad";
+            campoErrores.style.display = 'block';
         }
     }
 }

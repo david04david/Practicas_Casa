@@ -39,6 +39,27 @@ main{
         font-size: 2rem;
         text-align: center;
         }
+
+        .data{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            width: 25%;
+            margin-top: 3%;
+            padding: 5%;
+            font-size: 1.30rem;
+        }
+        
+        div#City{
+            font-weight: bold;
+            font-size: 1.75rem;
+        }
+        
+        div#ActTemp{
+            font-size: 1.35rem;
+        }
     }
 
     div#persona{
@@ -79,7 +100,7 @@ main{
             justify-content: center;
             align-items: center;
             gap: 10px;
-            margin: 10% auto;
+            margin: 7% auto;
             padding: 2%;
             background-color: aquamarine;
             border-radius: 20px;
@@ -98,23 +119,13 @@ main{
     
 }
 
-.data{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
+div#errores{
+    display: none;
     width: 25%;
-    margin-top: 3%;
-    padding: 5%;
-    font-size: 1.30rem;
-}
-
-div#City{
-    font-weight: bold;
-    font-size: 1.75rem;
-}
-
-div#ActTemp{
-    font-size: 1.35rem;
+    position: absolute;
+    bottom: 0;
+    padding: 0.15%;
+    background-color: red;
+    border-top-right-radius: 10px;
+    color: white;
 }
