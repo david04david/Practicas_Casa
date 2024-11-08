@@ -215,25 +215,27 @@ function showPersons(){
     }
 }
 
-function carruselPersonas(){
+function carruselPersonas() {
+    let i = 0;
 
-        i=0;
-        const muestra = function(){
-            campoPersona.innerHTML = contacts[i].name;
-            i++;
-            if (i==contacts.length) {
-                i=0;
-            }
+    const muestra = function() {
+        campoPersona.innerHTML = contacts[i].name;
+        i++;
+        if (i === contacts.length) {
+            i = 0;
         }
-        
-        carrusel=setInterval(muestra,2000);
+        carrusel=setTimeout(muestra, 5000);
+    };
+
+    muestra();
 }
 
 function pararCarrusel() {
-    clearInterval(carrusel);
+    clearTimeout(carrusel);
 }
 
 function muestraInfo() {
+    campoInfo.style.display='block';
     campoInfo.innerHTML = "";
     for(persona of contacts){
         campoInfo.innerHTML +=`${persona.name} ${persona.edad}<br>`;
@@ -245,5 +247,4 @@ function muestraInfo() {
 
 
 //Llamadas
-
 carruselPersonas();
